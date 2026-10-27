@@ -1,0 +1,120 @@
+{
+  "version": "v1.0.0",
+  "name": "TraceX PaySim Fraud Classifier (RandomForestClassifier)",
+  "algorithm": "RandomForestClassifier",
+  "trained_at": "2026-10-27T14:00:46.621624+00:00",
+  "training_dataset_size": 24500,
+  "fraud_count_in_training": 468,
+  "validation_metrics": {
+    "model_name": "Random Forest (Tree-based)",
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "confusion_matrix": {
+      "tn": 5150,
+      "fp": 0,
+      "fn": 0,
+      "tp": 100
+    },
+    "fraud_class_metrics": {
+      "fraud_count": 100,
+      "detected_frauds": 100,
+      "missed_frauds": 0,
+      "false_alarms": 0
+    }
+  },
+  "test_metrics": {
+    "model_name": "Random Forest (Tree-based)",
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0,
+    "pr_auc": 1.0,
+    "confusion_matrix": {
+      "tn": 5138,
+      "fp": 0,
+      "fn": 0,
+      "tp": 112
+    },
+    "fraud_class_metrics": {
+      "fraud_count": 112,
+      "detected_frauds": 112,
+      "missed_frauds": 0,
+      "false_alarms": 0
+    }
+  },
+  "comparison": {
+    "baseline_lr": {
+      "model_name": "Logistic Regression (Baseline)",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "tn": 5150,
+        "fp": 0,
+        "fn": 0,
+        "tp": 100
+      },
+      "fraud_class_metrics": {
+        "fraud_count": 100,
+        "detected_frauds": 100,
+        "missed_frauds": 0,
+        "false_alarms": 0
+      }
+    },
+    "tree_rf": {
+      "model_name": "Random Forest (Tree-based)",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "confusion_matrix": {
+        "tn": 5150,
+        "fp": 0,
+        "fn": 0,
+        "tp": 100
+      },
+      "fraud_class_metrics": {
+        "fraud_count": 100,
+        "detected_frauds": 100,
+        "missed_frauds": 0,
+        "false_alarms": 0
+      }
+    }
+  },
+  "feature_importance": {
+    "dest_was_zero": 0.2482,
+    "oldbalanceDest": 0.1913,
+    "orig_is_zero": 0.1566,
+    "newbalanceOrig": 0.1368,
+    "orig_drain_ratio": 0.0937,
+    "log_amount": 0.0555,
+    "amount": 0.0458,
+    "newbalanceDest": 0.0276,
+    "dest_balance_diff": 0.0152,
+    "oldbalanceOrg": 0.0148
+  },
+  "feature_names": [
+    "type",
+    "step",
+    "amount",
+    "oldbalanceOrg",
+    "newbalanceOrig",
+    "oldbalanceDest",
+    "newbalanceDest",
+    "orig_balance_diff",
+    "dest_balance_diff",
+    "orig_drain_ratio",
+    "dest_was_zero",
+    "orig_is_zero",
+    "log_amount",
+    "hour_of_day",
+    "dest_is_merchant"
+  ],
+  "synthetic_data_disclaimer": "Model trained on the PaySim synthetic financial transaction simulator. Evaluations reflect benchmark simulated behavioral patterns. Performance on synthetic data does not establish real-world fraud detection efficacy without continuous operational calibration."
+}

@@ -1,0 +1,55 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: tracex-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: tracex
+    ports:
+      - "5432:5432"
+    volumes:
+      - tracex_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: tracex-backend
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: "postgresql+psycopg2://postgres:postgrespassword@postgres:5432/tracex"
+      SECRET_KEY: "tracex_enterprise_jwt_super_secret_key_change_in_production_2026"
+      INITIAL_ADMIN_EMAIL: "admin@tracex.ai"
+      INITIAL_ADMIN_PASSWORD: "AdminSecurePass123!"
+      CORS_ORIGINS: "http://localhost:5173,http://localhost:80,http://127.0.0.1:5173"
+      PORT: 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ml/models:/app/ml/models
+      - ./ml/data:/app/ml/data
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: tracex-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+
+volumes:
+  tracex_pgdata:
+    driver: local

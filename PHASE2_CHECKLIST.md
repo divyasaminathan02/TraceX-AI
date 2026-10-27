@@ -1,0 +1,34 @@
+# TraceX AI — Phase 2 Implementation Checklist
+
+- [ ] **1. Database & Schema Expansion**
+  - [ ] Create `AgentExecution` SQLAlchemy model for tracking agent runs
+  - [ ] Create `AnalystFeedback` SQLAlchemy model for human-in-the-loop labels
+  - [ ] Generate & apply Alembic migration (`agent_execution_and_feedback`)
+- [ ] **2. Modular AI-Agent Architecture**
+  - [ ] `Agent A: Fraud Detection Agent` (ML validation, inference, threshold comparison)
+  - [ ] `Agent B: Transaction Investigation Agent` (database queries, velocity, balance checks, evidence synthesis)
+  - [ ] `Agent C: Explainability Agent` (feature attribution, waterfall explanations, model version metadata)
+  - [ ] `Agent D: Alert Prioritization Agent` (risk score prioritization, deterministic deduplication, analyst overrides)
+  - [ ] `Agent E: Investigation Copilot` (analyst chat interface, tool calling, prompt injection safety, confirmation gates)
+  - [ ] `Agent Orchestration Service` (controlled sequencing, timeouts, persistent execution logs)
+- [ ] **3. Advanced Fraud Intelligence Endpoints**
+  - [ ] Agent execution telemetry API (`/api/v1/agents/executions`)
+  - [ ] Copilot chat & action confirmation API (`/api/v1/copilot/chat`, `/api/v1/copilot/confirm-action`)
+  - [ ] Analyst feedback API (`/api/v1/feedback`)
+  - [ ] Filtered transaction and case export reporting API (`/api/v1/reports/export`)
+- [ ] **4. Production Security Hardening**
+  - [ ] Rate limiting on sensitive endpoints
+  - [ ] Prompt injection protection and untrusted input sanitization
+  - [ ] Cross-user access verification and security tests
+- [ ] **5. Enterprise Frontend UI Upgrades**
+  - [ ] AI Agent Activity Center view (`/agents`)
+  - [ ] Investigation Workspace with interactive Copilot chat drawer & confirmation modals
+  - [ ] Analyst feedback widget on transactions and cases
+  - [ ] CSV/JSON export actions across Explorer and Cases
+- [ ] **6. Testing & Quality Verification**
+  - [ ] Comprehensive pytest suite for agents, orchestrator, feedback, and security
+  - [ ] TypeScript verification and production build
+- [ ] **7. Git & Deployment Preparation**
+  - [ ] Secret scan and updated `.gitignore`
+  - [ ] Commit and push to `https://github.com/divyasaminathan02/TraceX-AI.git`
+  - [ ] Multi-cloud deployment configs (`vercel.json`, `render.yaml`, production docker-compose)
